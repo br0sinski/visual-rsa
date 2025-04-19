@@ -30,13 +30,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyinstaller PyQt5
 
-      - name: Build Binary with PyInstaller
-        run: |
-          pyinstaller --onefile --noconsole \
-            --add-data "gui:gui" \
-            --add-data "crypto:crypto" \
-            --name visual-rsa \
-            gui/main.py
+      - name: Build Binary with PyInstaller (Windows)
+        if: matrix.os == 'windows-latest'
+        run: pyinstaller --onefile --noconsole --add-data "gui;gui" --add-data "crypto;crypto" --name visual-rsa gui/main.py
+        shell: cmd
+
+      - name: Build Binary with PyInstaller (Linux)
+        if: matrix.os == 'ubuntu-latest'
+        run: pyinstaller --onefile --noconsole --add-data "gui:gui" --add-data "crypto:crypto" --name visual-rsa gui/main.py
+        shell: bash
 
       - name: Upload Binary
         uses: actions/upload-artifact@v4

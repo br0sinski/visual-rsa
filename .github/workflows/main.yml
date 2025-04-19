@@ -18,12 +18,12 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.10
+          python-version: "3.10"
 
       - name: Install Dependencies
         run: |
@@ -35,7 +35,7 @@ jobs:
           pyinstaller gui/main.py --onefile --noconsole --name visual-rsa
 
       - name: Upload Binary
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: visual-rsa-${{ matrix.os }}
           path: |
@@ -47,25 +47,24 @@ jobs:
     name: Create Release and Upload Binaries
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
-          name: visual-rsa-${{ matrix.os }}
           path: binaries
 
       - name: Create GitHub Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: |
-            binaries/visual-rsa.exe
-            binaries/visual-rsa
+          artifacts: "binaries/**"
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.run_number }}
+          tag: v${{ github.run_number }}
           name: Release ${{ github.run_number }}
           body: |
             This release contains the latest binaries for the visual-rsa GUI application.

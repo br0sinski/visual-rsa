@@ -18,7 +18,7 @@ Die Berechnung des privaten Exponenten erfolgt durch Bestimmung des modularen In
 wird mitgeliefert damit es konform mit der Aufgabenstellung ist. In der Implementierung hat sich jedoch die pow()-Funktion als effizienter erwiesen.
 
 Verschlüsselung und Entschlüsselung:
-Bei der Verschlüsselung wird die Nachricht zunächst in UTF-8 kodiert und anschließend in eine Integer-Darstellung konvertiert – unter der Big-Endian Byte-Reihenfolge. Dabei wird ein Sicherheitscheck vorgenommen, ob die Nachricht nicht zu groß für den Modulus n ist. Die eigentliche Krise erfolgt über die modulare Exponentiation, implementiert mit dem Square-and-Multiply-Algorithmus.
+Bei der Verschlüsselung wird die Nachricht zunächst in UTF-8 kodiert und anschließend in eine Integer-Darstellung konvertiert – unter der Big-Endian Byte-Reihenfolge. Dabei wird ein Sicherheitscheck vorgenommen, ob die Nachricht nicht zu groß für den Modulus n ist
 
 Digitale Signatur:
 Die Signierung funktioniert parallel zur Verschlüsselung, indem die Nachricht mit dem privaten Schlüssel expotentiert wird. Die Überprüfung erfolgt indem man den signierten Wert mit dem öffentlichen Schlüssel expotentiert und anschließend prüft, ob die ursprüngliche Nachricht wiederhergestellt werden kann.

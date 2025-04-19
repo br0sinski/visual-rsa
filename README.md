@@ -52,7 +52,7 @@ A visual representation of the RSA Algorithm
    python3 gui/main.py
    ```
 
-### Methode 2: Vorgefertigte Binaries aus Releases (nicht empfohlen: Windows Defender setzt eine False Positive??? - bitte hilfe)
+### Methode 2: Vorgefertigte Binaries aus Releases (nicht empfohlen: Windows Defender setzt eine False Positive??? - Unter Windows 10 alles fine, unter 11 nicht)
 
 1. Gehe auf die [Releases-Seite](https://github.com/br0sinski/visual-rsa/releases) des Projekts
 2. Lade je nach Betriebssystem die vorgefertigten Binaries runter:

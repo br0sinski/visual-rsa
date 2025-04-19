@@ -1,4 +1,4 @@
-from view import RSAView
+from gui.view import RSAView
 import sys
 from PyQt5.QtWidgets import QApplication
 
